@@ -30,7 +30,23 @@ public class MainActivity extends AppCompatActivity {
         users.add(user1);   users.add(user2);   users.add(user3);
 
         /****** Handle new password somehow *******/
+       try{
+            String name="", new_pw="";
 
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            if(extras != null){
+                name = extras.getString("username");
+                new_pw = extras.getString("password");
+
+                for( int i=0; i<users.size(); i++){
+                    String[] user = users.get(i);
+                    if( user[0].contains( name ) ){
+                        user[1] = new_pw;
+                    }
+                }
+            }
+        } catch (Exception e){} 
 
         edit_username = (EditText) findViewById(R.id.username);
         edit_password = (EditText) findViewById(R.id.password);
